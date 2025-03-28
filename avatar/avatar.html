@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人博客</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico"/>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">主页</a></li>
+            <li><a href="../blog.html">博客文章</a></li>
+            <li><a href="../tech.html">技术分享</a></li>
+            <li><a href="../scifi.html">科幻作品</a></li>
+            <li><a href="../space.html">星际论道</a></li>
+            <li class="user-info">
+                <img id="userAvatar" src="default-avatar.png" alt="用户头像">
+                <span id="username" onclick="window.location.href='../dl.html'">游客</span>
+            </li> 
+        </ul>
+    </nav>
+</head>
+<body>
+    
+    
+    <style>
+        div {
+        width: 500px;
+        height: 200px;
+        border: 2px solid rebeccapurple;
+        border-radius: 20px; /* 设置所有角的圆角大小 */
+        margin: auto;
+        }
+        </style>
+    <main>
+        <div class="rounded-rectangle blog-content">
+        <h1>请选择你的头像</h1>
+        <h3>尺寸最好在 1024*1024 像素以上，且为较清晰的照片哦。
+            选择头像，建议不要使用本人真实照片。</h3>
+    <script>
+        const container = document.getElementById('avatar-container');
+
+// 从localStorage获取用户名
+const username = localStorage.getItem('username');
+if (username) {
+    document.getElementById('username').textContent = username;
+}
+
+        // 检查localStorage中是否存储了头像URL
+        const storedAvatar = localStorage.getItem('avatarUrl') || localStorage.getItem('selectedAvatar');
+        if (storedAvatar) {
+            document.getElementById('userAvatar').src = storedAvatar;
+        }
+
+        container.addEventListener('click', (event) => {
+            if (event.target.tagName === 'IMG') {
+                const selectedAvatar = event.target.src.split('/').pop();
+                localStorage.setItem('selectedAvatar', selectedAvatar);
+                document.getElementById('userAvatar').src = selectedAvatar;
+                window.location.href = '../index.html';
+            }
+        });
+
+        avatars.forEach(avatar => {
+            const img = document.createElement('img');
+            img.src = avatar;
+            img.alt = '头像选项';
+            img.style.width = '100px';
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', () => {
+                localStorage.setItem('selectedAvatar', '../avater/' + avatar);
+                document.getElementById('userAvatar').src = '../avater/' + avatar;
+                // 清除上传图片的存储信息
+                localStorage.removeItem('avatarUrl');
+                window.location.href = '../index.html';
+            });
+            container.appendChild(img);
+        });
+    </script>
+
+
+    <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+    <label for="avatarInput" class="custom-file-upload">选择头像</label>
+    <script>
+        document.getElementById('avatarInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const newAvatar = e.target.result;
+                localStorage.setItem('avatarUrl', newAvatar);
+                document.getElementById('userAvatar').src = newAvatar;
+                avatars.push(newAvatar);
+                const img = document.createElement('img');
+                img.src = newAvatar;
+                img.alt = '上传的头像';
+                img.style.width = '100px';
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', () => {
+                    localStorage.setItem('selectedAvatar', newAvatar);
+                    document.getElementById('userAvatar').src = newAvatar;
+                    window.location.href = '../index.html';
+                });
+                container.appendChild(img);
+                // 删除多余的跳转语句
+                // window.location.href = '../index.html';
+                alert('头像已更新！');
+                window.location.href = '../index.html'; // 添加跳转到主页的逻辑
+                };
+                reader.readAsDataURL(file);
+            }
+        }); 
+
+        
+    </script></main>
+</body>
+</html>
