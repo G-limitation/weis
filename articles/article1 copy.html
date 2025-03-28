@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人博客</title>
+    <!-- 只保留一种引入样式的方式 -->
+    <link rel="stylesheet" href="..\styles.css">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico"/>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="..\index.html">主页</a></li>
+            <li><a href="..\blog.html">博客文章</a></li>
+            <li><a href="..\tech.html">技术分享</a></li>
+            <li><a href="..\scifi.html">科幻作品</a></li>
+            <li><a href="..\space.html">星际论道</a></li>
+            <li class="user-info">
+                <!-- 统一路径 -->
+                <img id="userAvatar" src="../avatar/default-avatar.png">
+                <span id="username">游客</span>
+            </li> 
+        </ul>
+    </nav>
+    <main>
+        <div class="article-container">
+            <h1>文学</h1>
+            <!-- 统一路径 -->
+            <img src="../avatar/default-avatar.png" alt="示例图片" style="width: 100%; max-width: 600px; margin: 20px auto; display: block;">
+            <p>
+                类型代表作不可错过
+                （“黄金时代”及其影响）
+
+                作为类型文学的代表，科幻小说有其自身的故事叙述模式和细分类型，比如机器人、宇宙、外星人、飞船等。
+
+                下面推荐的这些作品是科幻小说榜单的常客，也是类型科幻的代表作品。
+
+                1、《机器人短篇全集》 [美] 艾萨克·阿西莫夫
+
+                阿西莫夫不只有基地，还有大名鼎鼎的“机器人三定律”的来源——《机器人短篇合集》。
+
+                一名科幻作家设定的定律，如今已成为机器人的设计准则。18年4月，英国上议院人工智能特别委员会发布了一份报告，其中的“AI五条准则”就脱胎于机器人三定律。
+
+                2、《异乡异客》 [美] 罗伯特·海因莱因
+
+                从火星人的视角来看地球，海因莱因在这本书里花了极大的工夫，来讽刺人类世界的万千众生和可笑的道德观念。关于政治和自省，科幻总是先行一步。
+
+                3、《2001太空漫游》 [英] 阿瑟·克拉克
+
+                那部史上最伟大的科幻电影你肯定知道，至于小说， 和电影同期创作，用作者本人的话来说，“小说和剧本是同时在写作，两者相互激荡而行。”
+
+                它有关于人类在宇宙中的位置，有关于人类的最终归宿。
+
+                4、《沙丘》 [美] 弗兰克·赫伯特
+
+                《沙丘》详尽地塑造一个中东风格的幻想世界，更重要的意义，是它启发了一个游戏类型——即时战略游戏（Real-TimeStrategy Game，简称RTS），从《魔兽争霸》《帝国时代》到《皇室战争》《阴阳师》……
+            </p>
+            <p>
+                【搜狐简单AI】 >>https://ai.sohu.com/pc/textHome?trans=030001_yljdaikj
+
+                这款工具的功能涵盖了从写文案、写工作总结到生成文章配图等几乎所有工作场景，让我这个 30+打工人的工作效率提升至少30%，年底成功达到加薪目标！
+
+                💡帮大家亲测总结了几个我日常工作常用的功能，快点击链接试试吧！
+
+                工作总结>>https://ai.sohu.com/pc/textGenerate?id=108&uuid=3201073&trans=030001_yljdaikj
+            </p>
+            <div class="article-actions">
+                <button class="like-btn" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">👍 点赞 <span id="likeCount">0</span></button>
+                <button class="favorite-btn" style="background-color: #FF9800; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">⭐ 收藏</button>
+            </div>
+            <div class="comments-section" style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">
+                <h2 style="font-size: 1.5em; margin-bottom: 15px;">评论</h2>
+                <div class="comments-list" style="margin-bottom: 20px;"></div>
+                <textarea placeholder="发表你的评论..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; resize: vertical; min-height: 100px;"></textarea>
+                <button class="submit-comment" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px;">提交评论</button>
+            </div>
+        </div>
+    </main>
+    <script>
+        const articleId = window.location.pathname.split('/').pop().replace('.html', '');
+        const favoriteBtn = document.querySelector('.favorite-btn');
+        const isFavorited = localStorage.getItem(`favorited_${articleId}`);
+        if (isFavorited === 'true') {
+            favoriteBtn.textContent = '⭐ 已收藏';
+            favoriteBtn.disabled = true;
+        }
+        favoriteBtn.addEventListener('click', function() {
+            this.textContent = '⭐ 已收藏';
+            this.disabled = true;
+            localStorage.setItem(`favorited_${articleId}`, 'true');
+        });
+
+        function deleteComment(commentId) {
+            let comments = JSON.parse(localStorage.getItem(`comments_${articleId}`) || '[]');
+            comments = comments.filter(c => c.id !== commentId);
+            localStorage.setItem(`comments_${articleId}`, JSON.stringify(comments));
+            location.reload();
+        }
+
+        document.querySelector('.submit-comment').addEventListener('click', function() {
+            const commentText = document.querySelector('textarea').value;
+            if (commentText.trim()) {
+                const commentDiv = document.createElement('div');
+                commentDiv.className = 'comment-item';
+                const now = new Date();
+                const timeString = now.toLocaleString();
+                const comment = {
+                    username: localStorage.getItem('username') || '游客',
+                    time: timeString,
+                    text: commentText,
+                    id: Date.now(),
+                    canDelete: true
+                };
+                let comments = JSON.parse(localStorage.getItem(`comments_${articleId}`) || '[]');
+                comments.push(comment);
+                localStorage.setItem(`comments_${articleId}`, JSON.stringify(comments));
+                commentDiv.innerHTML = `<p><strong>${comment.username}</strong> 于 ${comment.time} 发表：</p><p>${comment.text}</p><button onclick="deleteComment(${comment.id})" class="delete-btn" style="background-color: #f44336; color: white; padding: 5px 10px; border: none; border-radius: 3px; cursor: pointer; margin-top: 5px;">撤回</button>`;
+                document.querySelector('.comments-list').appendChild(commentDiv);
+                document.querySelector('textarea').value = '';
+            }
+        });
+
+        // 页面加载时显示已存储的评论
+        const storedComments = JSON.parse(localStorage.getItem(`comments_${articleId}`) || '[]');
+        storedComments.forEach(comment => {
+            const commentDiv = document.createElement('div');
+            commentDiv.className = 'comment-item';
+            commentDiv.innerHTML = `<p><strong>${comment.username}</strong> 于 ${comment.time} 发表：</p><p>${comment.text}</p><button onclick="deleteComment(${comment.id})" class="delete-btn" style="background-color: #f44336; color: white; padding: 5px 10px; border: none; border-radius: 3px; cursor: pointer; margin-top: 5px;">撤回</button>`;
+            document.querySelector('.comments-list').appendChild(commentDiv);
+        });
+
+        // 修正 likeCount 变量初始化
+        let likeCount = parseInt(localStorage.getItem(`likeCount_${articleId}`) || 0);
+        document.getElementById('likeCount').textContent = likeCount;
+        document.querySelector('.like-btn').addEventListener('click', function() {
+            likeCount++;
+            localStorage.setItem(`likeCount_${articleId}`, likeCount);
+            document.getElementById('likeCount').textContent = likeCount;
+        });
+
+        const username = localStorage.getItem('username');
+        if (username) {
+            document.getElementById('username').textContent = username;
+        }
+        const avatarUrl = localStorage.getItem('avatarUrl') || localStorage.getItem('selectedAvatar') || '../avatar/default-avatar.png';
+        document.getElementById('userAvatar').src = avatarUrl;
+    </script>
+</body>
+</html>
