@@ -51,6 +51,8 @@ if (username) {
         const storedAvatar = localStorage.getItem('avatarUrl') || localStorage.getItem('selectedAvatar');
         if (storedAvatar) {
             document.getElementById('userAvatar').src = storedAvatar;
+        } else {
+            document.getElementById('userAvatar').src = 'default-avatar.png';
         }
 
         container.addEventListener('click', (event) => {
