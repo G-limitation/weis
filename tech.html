@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技术分享</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">主页</a></li>
+            <li><a href="blog.html">博客文章</a></li>
+            <li><a href="tech.html">技术分享</a></li>
+            <li><a href="scifi.html">科幻作品</a></li>
+            <li><a href="space.html">星际论道</a></li><li>
+            <li class="user-info">
+                <img id="userAvatar" src="avatar/default-avatar.png" alt="用户头像">
+                <span id="username">游客</span>
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <h1>技术分享</h1>
+        <div class="rounded-rectangle blog-content">
+        <p>这里展示我的技术分享文章，包括编程技巧、开发经验和前沿技术探讨。</p>
+    </main>
+    <div class="version-info">当前版本: v2.8.0</div>
+<script src="settings.js"></script>
+<script>
+    const username = localStorage.getItem('username');
+    if (username) {
+        document.getElementById('username').textContent = username;
+    }
+    const avatarUrl = localStorage.getItem('avatarUrl') || '../avatar/default-avatar.png';
+    document.getElementById('userAvatar').src = avatarUrl;
+</script>
+</body>
+</html>

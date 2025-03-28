@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人博客</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">主页</a></li>
+            <li><a href="blog.html">博客文章</a></li>
+            <li><a href="tech.html">技术分享</a></li>
+            <li><a href="scifi.html">科幻作品</a></li>
+            <li><a href="space.html">星际论道</a></li>
+            <li class="user-info">
+                <img id="userAvatar" src="avatar/default-avatar.png" alt="用户头像" onclick="window.location.href='avatar/avatar.html'">
+                <span id="username" onclick="window.location.href='dl.html'">游客</span>
+            </li> 
+        </ul>
+    </nav>
+    <main>
+        <h1 class="aurora-text">欢迎来到 极威 </h1>
+        <div class="rounded-rectangle blog-content">
+        <p>这是我的个人博客，分享我的生活和技术心得。</p>
+        <p>你在这里，你可以找到关于技术、科幻和个人成长的深度文章。</p>
+    </main>
+    <div class="version-info">当前版本: v2.8.0</div>
+    <script src="script.js"></script><script src="settings.js"></script>
+<script>
+    const username = localStorage.getItem('username');
+    if (username) {
+        document.getElementById('username').textContent = username;
+    }
+    const avatarUrl = localStorage.getItem('avatarUrl') || localStorage.getItem('selectedAvatar') || 'avatar/default-avatar.png';
+if (!avatarUrl || !document.getElementById('userAvatar').src) {
+  document.getElementById('userAvatar').src = 'avatar/default-avatar.png';
+}
+    document.getElementById('userAvatar').src = avatarUrl;
+</script>
+<script src="https://agi-dev-platform-web.bj.bcebos.com/ai_apaas/embed/output/embedLiteSDK.js?responseExpires=0"></script>
+<script>
+    new EmbedLiteSDK({appId: '00ac7032-62b9-461c-86e6-7142202d7903', code: 'embed1O8eKA32xP2NGYgBLOhj'});
+</script>
+</body>
+</html>

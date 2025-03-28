@@ -1,0 +1,518 @@
+body {
+    font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    margin: 0;
+    padding: 0;
+
+}
+
+
+
+
+/* 新增顶部导航栏样式 */
+nav {
+    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    width: 100%; /* 新增 */
+}
+
+nav li.user-info {
+    margin-left: auto; /* 关键属性：将元素推到最右侧 */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-right: 1rem;
+}
+
+
+
+
+nav li.user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+nav li.user-info img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* 定义 ml-auto 类，将元素推到右侧 */
+.ml-auto {
+    margin-left: auto;
+}
+
+/* 可以根据需要调整用户信息部分的样式 */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* 设置图片和文字之间的间距 */
+}
+
+nav li.user-info {
+    margin-left: auto;  /* 关键属性：将元素推到最右侧 */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-right: 1rem;
+}
+
+/* 保持其他菜单项在左侧 */
+nav li:not(.user-info) {
+    margin-right: 1rem;
+}
+
+nav li.user-info img {
+    width: 40px;  /* 增大图片宽度 */
+    height: 40px; /* 增大图片高度 */
+    border-radius: 50%; 
+    object-fit: cover;  
+}
+
+nav a, #username {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: orange;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+#search-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    width: 300px;
+}
+
+#search-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: #00FFFF;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+#search-button:hover {
+    background-color: #0056b3;
+}
+
+/* 新增主体内容样式 */
+
+.aurora-text {
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text; /* 添加标准属性 */
+    -webkit-text-fill-color: transparent;
+    animation: aurora 5s ease infinite;
+    font-size: 4rem;
+    text-indent: 2em;
+    }
+
+@keyframes aurora {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+
+
+/* 新增文章卡片样式 */
+
+    .aurora-text {
+        background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        background-clip: text; /* 添加标准属性 */
+        -webkit-text-fill-color: transparent;
+        animation: aurora 5s ease infinite;
+        font-size: 4rem;
+        font-weight: bold;
+    }
+
+@keyframes aurora {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.article-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.article-card:hover {
+    transform: translateY(-5px);
+}
+
+.article-title {
+    font-size: 1.5rem;
+    color: #00FF00;
+    margin-bottom: 0.5rem;
+}
+
+.article-meta {
+    color: #FF0000;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.article-content {
+    color: #444;
+    line-height: 1.6;
+}
+
+/* 新增侧边栏样式 */
+
+         /* 定义公共类 */
+        .text-with-aurora {
+            background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+            background-size: 200% 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: aurora 5s ease infinite;
+        }
+        
+        /* 使用继承 */
+        .post-form-container h2 {
+            all: inherit;
+        }
+        
+        .aurora-text {
+            all: inherit;
+            font-size: 4rem;
+        }
+.sidebar {
+    width: 300px;
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.sidebar-section {
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-title {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.rounded-rectangle {
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+/* 新增响应式布局 */
+
+    /* 修复后的代码 */
+    .aurora-text {
+        background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+        background-size: 200% 200%;
+        background-clip: text; /* 添加标准属性 */
+        -webkit-background-clip: text; /* 兼容旧版浏览器 */
+        -webkit-text-fill-color: transparent;
+        animation: aurora 5s ease infinite;
+        font-size: 4rem;
+    }
+    
+    @keyframes aurora {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .search-box {
+        margin: 1rem 0;
+    }
+    
+    main {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        margin-top: 2rem;
+    }
+}
+
+main {
+    padding: 2rem;
+}
+
+/* 新增版本信息样式 */
+.version-info {
+    text-align: center;
+    color: #999;
+    font-size: 0.8rem;
+    margin-top: 2rem;
+}
+
+/* 新增博客内容容器样式 */
+.rounded-rectangle.blog-content {
+    background-color: #f9f9f9;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* 新增博客标题样式 */
+.blog-title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+/* 新增文章标题样式 */
+.section-title {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+/* 新增文章副标题样式 */
+.blog-content h3 {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .search-box {
+        margin: 1rem 0;
+    }
+    
+    main {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        margin-top: 2rem;
+    }
+}
+
+main {
+    padding: 2rem;
+}
+
+.version-info {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+/* 美化点赞、收藏、分享按钮 */
+.like-button, .favorite-button, .share-button {
+    background-color: #007BFF;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 0.5rem;
+}
+
+.like-button:hover, .favorite-button:hover, .share-button:hover {
+    background-color: #0056b3;
+}
+
+/* 美化评论区 */
+.comment-section {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.comment-input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-comment {
+    background-color: #28a745;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-comment:hover {
+    background-color: #218838;
+}
+
+/* 美化分页 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.pagination a {
+    color: #007BFF;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border: 1px solid #007BFF;
+    border-radius: 4px;
+    margin: 0 0.25rem;
+    transition: all 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: #007BFF;
+    color: white;
+}
+
+/* 移除登录表单相关样式 */
+
+    .aurora-text {
+        background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+        background-size: 200% 200%;
+        /* 添加标准属性 */
+        background-clip: text;
+        -webkit-background-clip: text; /* 兼容旧版浏览器 */
+        -webkit-text-fill-color: transparent;
+        animation: aurora 5s ease infinite;
+        font-size: 3rem;
+        font-weight: bold;
+        text-indent: -0.5em;
+    }
+    
+    @keyframes aurora {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+form {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #333;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/* 美化上传文件控件 */
+input[type=file] {
+    display: none;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-file-upload:hover {
+    background-color: #0056b3;
+}

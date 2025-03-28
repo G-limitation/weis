@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科幻作品 - 搜索示例</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">主页</a></li>
+            <li><a href="blog.html">博客文章</a></li>
+            <li><a href="tech.html">技术分享</a></li>
+            <li><a href="scifi.html">科幻作品</a></li>
+            <li><a href="space.html">星际论道</a></li>
+            <li class="user-info">
+                <img id="userAvatar" src="avatar/default-avatar.png" alt="用户头像">
+                <span id="username">游客</span>
+            </li>
+        </ul>    
+    </nav><!-- 搜索功能样式 -->
+    <style>
+        .search-container {
+            display: flex;
+            align-items: center;
+            width: 450px;
+            height: 60px;
+            margin: 30px auto;
+            border: 2px solid #e0e0e0;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: border-color 0.3s ease;
+        }
+
+        .search-container:hover {
+            border-color: #ff6b6b;
+        }
+        .search-results {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .search-results ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .search-results li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .search-results li:last-child {
+            border-bottom: none;
+        }
+
+        .search-icon {
+            color: #666;
+            font-size: 20px;
+            padding: 0 18px;
+            font-family: "Font Awesome 6 Free";
+            font-weight: 600;
+        }
+
+        .search-container input {
+            flex: 1;
+            height: 100%;
+            border: none;
+            outline: none;
+            font-size: 18px;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .search-container input::placeholder {
+            color: #999;
+        }
+
+        .search-container input:focus {
+            padding-left: 18px;
+        }
+
+        .search-container input:focus ~ .search-icon {
+            color: #ff6b6b;
+        }
+        #search-button {
+            background-color: white;
+            color: gray;
+        }
+    </style>
+    <!-- 引入Font Awesome图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- 引入Font Awesome图标库（可选，若需真实图标） -->
+    
+</head>
+<body>
+    <!-- 导航栏 -->
+
+    <div class="search-container">
+        <i class="search-icon fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="搜索" id="search-input">
+        <button id="search-button">搜索</button>
+    </div>
+    <div id="results" class="search-results"></div>
+
+    <!-- 科幻作品内容 -->
+    <main>
+        <div class="scifi-header">
+            <h1>科幻作品</h1>
+            <p class="subtitle">探索未来科技与无限可能</p>
+        </div>
+        <div class="scifi-grid">
+            <div class="scifi-card">
+                <h2>《星际迷航》</h2>
+                <p>描述人类探索宇宙的冒险故事...</p>
+            </div>
+            <div class="scifi-card">
+                <h2>《机器人三定律》</h2>
+                <p>探讨人工智能与人类关系的哲学思考...</p>
+            </div>
+            <div class="scifi-card">
+                <h2>《时间机器》</h2>
+                <p>穿越时空的奇妙旅程...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- 版本信息 -->
+    <div class="version-info">当前版本: v2.8.0</div>
+
+    <script src="settings.js"></script>
+    <script>
+        // 导航栏用户信息
+        const username = localStorage.getItem('username');
+        if (username) {
+            document.getElementById('username').textContent = username;
+        }
+        const avatarUrl = localStorage.getItem('avatarUrl') || 
+                          localStorage.getItem('selectedAvatar') || 
+                          'avatar/default-avatar.png';
+        document.getElementById('userAvatar').src = avatarUrl;
+
+        // 搜索功能
+        document.getElementById('search-button').addEventListener('click', function () {
+            const searchTerm = document.getElementById('search-input').value.trim();
+            if (!searchTerm || searchTerm.length === 0) {
+                alert('请输入至少1个字符的搜索词');
+                return;
+            }
+            const results = performSearch(searchTerm);
+            displayResults(results);
+        });
+
+        function performSearch(term) {
+            return [
+                `包含 "${term}" 的科幻作品：《星际迷航》`,
+                `包含 "${term}" 的科幻理论：机器人三定律`,
+                `包含 "${term}" 的时间题材：《时间机器》`
+            ];
+        }
+
+        function displayResults(results) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+            if (results.length === 0) {
+                resultsDiv.innerHTML = '<p>未找到相关结果。</p>';
+            } else {
+                const ul = document.createElement('ul');
+                results.forEach(result => {
+                    const li = document.createElement('li');
+                    li.textContent = result;
+                    ul.appendChild(li);
+                });
+                resultsDiv.appendChild(ul);
+            }
+        }
+    </script>
+</body>
+</html>

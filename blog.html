@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客文章</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">主页</a></li>
+            <li><a href="blog.html">博客文章</a></li>
+            <li><a href="tech.html">技术分享</a></li>
+            <li><a href="scifi.html">科幻作品</a></li>
+            <li><a href="space.html">星际论道</a></li>
+            <li class="user-info">
+                <img id="userAvatar" src="avatar/default-avatar.png" alt="用户头像">
+                <span id="username">游客</span>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+            <script src="blog.js"></script><script src="settings.js"></script>
+<script>
+// 移除重复声明的代码，避免 'favoriteBtn' 变量的重复声明错误
+// const favoriteBtn = document.getElementById('favoriteBtn');
+// 由于代码中已经存在对 favoritesList 的声明，为避免重复声明错误，此处不进行重复声明
+// 移除以下代码
+// const favoritesList = document.getElementById('favoritesList');
+
+  // 从localStorage获取收藏数据
+// 移除重复声明，避免 'favorites' 变量的重复声明错误
+// let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+  // 更新收藏夹显示
+  function updateFavoritesList() {
+    favoritesList.innerHTML = favorites.map(article => 
+      `<div class="favorite-item">${article}</div>`
+    ).join('');
+  }
+
+  // 处理收藏按钮点击
+  favoriteBtn.addEventListener('click', () => {
+    const currentArticle = document.querySelector('.section-title').textContent;
+    if (!favorites.includes(currentArticle)) {
+      favorites.push(currentArticle);
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+      updateFavoritesList();
+    }
+  });
+
+  // 初始化时更新收藏夹
+  updateFavoritesList();
+</script>
+        <h1 class="blog-title">最新博客(2025.3.16)</h1>
+        
+        <div class="rounded-rectangle blog-content">
+            <h2 class="section-title"><a href="articles/article1.html">探索宇宙</a></h2>
+            <h3> “NASA宇航员滞留太空近一年，SpaceX“龙”飞船终于接他们回家！”</h3>
+            <script src="blog.js"></script><script src="settings.js"></script>
+<script>
+  const favoriteBtn = document.getElementById('favoriteBtn');
+  const favoritesList = document.getElementById('favoritesList');
+
+  // 从localStorage获取收藏数据
+  let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+  // 更新收藏夹显示
+  function updateFavoritesList() {
+    favoritesList.innerHTML = favorites.map(article => 
+      `<div class="favorite-item">${article}</div>`
+    ).join('');
+  }
+
+  // 处理收藏按钮点击
+  favoriteBtn.addEventListener('click', () => {
+    const currentArticle = document.querySelector('.section-title').textContent;
+    if (!favorites.includes(currentArticle)) {
+      favorites.push(currentArticle);
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+      updateFavoritesList();
+    }
+  });
+
+</script>
+        </div>
+            <h1 class="blog-title">最新博客</h1>
+
+<div id="favoritesList" class="favorites-list"></div>
+            
+            <div class="rounded-rectangle blog-content">
+                <h2 class="section-title"><a href="articles/article1 copy.html">科技前沿</a></h2>
+                <h3> “NASA宇航员滞留太空近一年，SpaceX“龙”飞船终于接他们回家！”</h3>
+                <div class="version-info">当前版本: v2.8.0</div>
+    </main>
+<script>
+    const username = localStorage.getItem('username');
+    if (username) {
+        document.getElementById('username').textContent = username;
+    }
+    const avatarUrl = localStorage.getItem('avatarUrl') || localStorage.getItem('selectedAvatar') || '../avatar/default-avatar.png';
+    document.getElementById('userAvatar').src = avatarUrl;
+</script>
+</body> 
+</html>
